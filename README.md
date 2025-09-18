@@ -1,18 +1,101 @@
-## Getting Started
+# 🦁 ZooManager
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Um sistema de gerenciamento de zoológico desenvolvido em **Java**, com foco em praticar conceitos avançados da linguagem: exceptions personalizadas, collections, streams, threads e organização em camadas.
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## 📌 Premissa do Projeto
+O ZooManager tem como objetivo controlar os principais elementos de um zoológico: **animais, recintos, tratadores, visitantes e eventos**.  
+O sistema permite cadastro, consultas, emissão de relatórios e execução de tarefas em paralelo.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+---
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## 🚀 Funcionalidades
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+### 1. Animais
+- Cadastro de animais com **nome, espécie, idade, dieta e status de conservação**.  
+- Organização em **recintos (enclosures)**.  
+- Implementação de equals e hashCode para comparação via **ID único**.
 
-## Dependency Management
+### 2. Recintos
+- Definição de **capacidade máxima** e controle de lotação.  
+- Lançamento da **OverCapacityException** ao ultrapassar a capacidade.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### 3. Tratadores e Tarefas
+- Cada tratador é responsável por um conjunto de animais.  
+- Tarefas: **alimentação**, **mudar estados de saude dos animais** e **checagem de saúde**.  
+- Uso de **threads** ou ExecutorService para simular execução em paralelo.  
+- Caso a dieta do animal seja inválida, lançar **FeedingException**.
+
+### 4. Bilheteria e Visitantes
+- Venda de ingressos com registro de visitantes.  
+- Armazenamento em **collections (List, Set, Map)**.  
+- Relatórios usando **Streams** (ex: filtrar maiores de idade, agrupar por tipo de ingresso).
+
+### 5. Eventos
+- Eventos como *“alimentação pública”* ou *“passeio guiado”* gerenciados em **BlockingQueue**.  
+- Processamento em paralelo via **threads**.
+
+### 6. Relatórios e Consultas
+- Relatório de animais por recinto.  
+- Relatório de animais por dieta ou status de conservação.  
+- Relatório de tratadores e seus animais.
+
+---
+
+## 🛠️ Requisitos Técnicos
+- **Exceptions personalizadas**:  
+  - AnimalNotFoundException 
+  - OverCapacityException
+  - FeedingException
+  - E mais...
+
+- **Uso de final** em constantes e classes utilitárias.  
+- **Collections**: ArrayList, HashSet, HashMap, BlockingQueue.  
+- **Streams**: filtros, agrupamentos, ordenações.  
+- **Threads/Executors** para tarefas concorrentes.  
+- **Organização em camadas**: domínio, serviços, exceções, relatórios, utilitários.  
+- **Classe Main** para simular todo o sistema.
+
+---
+
+## 📂 Estrutura do Projeto (até agora)
+
+ZOOLOGICO/
+└── src/
+    ├── controller/
+    │   └── (em breve controllers para orquestrar services)
+    │
+    ├── exceptions/
+    │   ├── AnimalNotFoundException.java
+    │   ├── DietaNotFoundException.java
+    │   ├── FeedingException.java
+    │   ├── OverCapacityException.java
+    │   └── ResourceNotFoundException.java
+    │
+    ├── model/
+    │   ├── enums/
+    │   │   ├── Dieta.java
+    │   │   ├── DocumentoIdentificacao.java
+    │   │   └── Evento.java
+    │   │
+    │   ├── Animal.java
+    │   ├── Bilheteria.java
+    │   ├── Recinto.java
+    │   ├── Tratador.java
+    │   └── Visitante.java
+    │
+    ├── service/
+    │   ├── AnimalService.java
+    │   ├── BilheteriaService.java
+    │   ├── EventoService.java
+    │   ├── RecintoService.java
+    │   ├── RelatorioService.java
+    │   ├── TratadorService.java
+    │   └── VisitanteService.java
+    │
+    ├── utils/
+    │   └── Logger.java
+    │
+    └── Main.java
+
