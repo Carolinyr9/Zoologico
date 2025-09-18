@@ -98,4 +98,8 @@ ZOOLOGICO/
     │   └── Logger.java
     │
     └── Main.java
+│
+├── .gitattributes
+├── LICENSE
+└── README.md
 
