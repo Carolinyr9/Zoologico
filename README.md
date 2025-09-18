@@ -61,6 +61,7 @@ O sistema permite cadastro, consultas, emissão de relatórios e execução de t
 
 ## 📂 Estrutura do Projeto (até agora)
 
+```bash
 ZOOLOGICO/
 └── src/
     ├── controller/
